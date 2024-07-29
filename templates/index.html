@@ -1,0 +1,55 @@
+{% extends 'base.html'%} {% block body %} {% block head %}
+<title>House Price Prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+{% endblock head %}
+<div class="container">
+  <h1>House Price Prediction</h1>
+  <form id="priceForm" method="post">
+    <label>Select a location : 
+    <select name="location" id="location">
+      <option></option>
+      {% for location in loc_data %}
+      <option>{{location}}</option>
+      {% endfor %}</select>
+    </label><br>
+     <label for="total_sqft">Enter total sqft : </label>
+    <input type="text" name="total_sqft" />
+    <p class="text">No. of bathrooms</p>
+    <input type="radio" name="bath" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="bath" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="bath" value="3" /><label for="3"> 3</label>
+    <p>No. of balcony</p>
+    <input type="radio" name="balcony" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="balcony" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="balcony" value="3" /><label for="3"> 3</label>
+    <p>No. of bedrooms</p>
+    <input type="radio" name="bhk" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="bhk" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="bhk" value="3" /><label for="3"> 3</label><br />
+    <input id="submitBtn" type="submit" /> 
+  </form>
+  <h3 id="result">{% if result %} Price: {{ result }} lakh Rs {% endif %}</h3>
+</div>
+
+{% endblock %} {% block script %}
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock script %}
+
+
+
+
+    <!-- <label for="total_sqft">Enter total sqft : </label>
+    <input type="text" name="total_sqft" />
+    <p class="text">No. of bathrooms</p>
+    <input type="radio" name="bath" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="bath" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="bath" value="3" /><label for="3"> 3</label>
+    <p>No. of balcony</p>
+    <input type="radio" name="balcony" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="balcony" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="balcony" value="3" /><label for="3"> 3</label>
+    <p>No. of bedrooms</p>
+    <input type="radio" name="bhk" value="1" /><label for="1"> 1</label>
+    <input type="radio" name="bhk" value="2" /><label for="2"> 2</label>
+    <input type="radio" name="bhk" value="3" /><label for="3"> 3</label><br />
+    <input id="submitBtn" type="submit" /> --> 
