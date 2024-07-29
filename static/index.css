@@ -26,11 +26,17 @@ h1{
     font-size: 2.5rem;
 }
 
+#formElm{
+    display: flex;
+    flex-direction: column;
+   
+}
+
 input{
     margin: 10px;
     border: 1px solid black;
 }
-input[type="submit"]{
+button{
     padding:10px 20px;
     border-radius: 20px;
     background-color:#28a745;
@@ -38,16 +44,20 @@ input[type="submit"]{
     outline: none;
     border: none;
     font-size: medium;
+    width: 30%;
+    position: relative;
+    left: 35%;
+    margin-top: 10px;
 }
 
-input[type="submit"]:hover{
+button:hover{
     background-color:black;
     color: #28a745;
     transition: 0.5s;
     cursor: pointer;
 }
 
-input[type="text"]{
+input[type="number"]{
     padding:10px 20px;
     border-radius: 6px;
     color: black;
@@ -64,5 +74,9 @@ select{
     outline: none;
     cursor: pointer;
     border: 1px solid black;
+}
+
+#result {
+    margin-top: 10px;
 }
 

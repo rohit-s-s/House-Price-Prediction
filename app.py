@@ -12,10 +12,10 @@ def home_page():
             locations = values
     if request.method == 'POST':
         location = request.form['location']
-        sqft = request.form['total_sqft']
-        bathroom = request.form['bath']
+        sqft = request.form['total sqft']
+        bathroom = request.form['bathrooms']
         balcony = request.form['balcony']
-        bhk = request.form['bhk']
+        bhk = request.form['bedrooms']
         price =predict_price(location,sqft,bathroom,balcony,bhk)
         result= round(price[0],2)
         print(price)
