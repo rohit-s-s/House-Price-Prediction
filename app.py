@@ -6,7 +6,7 @@ app = Flask(__name__)
 @app.route("/",methods = ['GET','POST'])
 def home_page():
     result = ""
-    with open("columns.json","r") as f:
+    with open("Model/columns.json","r") as f:
         data=json.load(f)
         for keys,values in data.items():
             locations = values
