@@ -1,30 +1,25 @@
-from flask import Flask, render_template,request
+from flask import Flask, render_template, request, jsonify
 from model import predict_price
-import json
+
 app = Flask(__name__)
 
-@app.route("/",methods = ['GET','POST'])
+@app.route("/")
 def home_page():
-    result = ""
-    with open("Model/columns.json","r") as f:
-        data=json.load(f)
-        for keys,values in data.items():
-            locations = values
-    if request.method == 'POST':
-        location = request.form['location']
-        sqft = request.form['total sqft']
-        bathroom = request.form['bathrooms']
-        balcony = request.form['balcony']
-        bhk = request.form['bedrooms']
-        price =predict_price(location,sqft,bathroom,balcony,bhk)
-        result= round(price[0],2)
-        print(price)
-        
+    return render_template("index.html", loc_data=["Electronic City Phase II", "Uttarahalli", "Lingadheeranahalli", "Kothanur"], array=[1, 2, 3])
 
-    return render_template("index.html",loc_data = locations,result=result)
-
+@app.route('/process', methods=['POST'])
+def process():
+    location = request.form.get('location')
+    sqft = request.form.get('total_sqft')
+    bathroom = request.form.get('bathroom')
+    balcony = request.form.get('balcony')
+    bhk = request.form.get('bedroom')
+    
+    # process the data using Python code
+    price = predict_price(location, sqft, bathroom, balcony, bhk)
+    result = round(price[0], 2)
+    print(result)
+    return str(result)
 
 if __name__ == "__main__":
-    
     app.run(debug=True)
-

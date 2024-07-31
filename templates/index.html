@@ -1,13 +1,16 @@
-{% extends 'base.html'%} {% block head %}
+{% extends 'base.html'%} 
+{% block head %}
 <title>House Price Prediction</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
-{% endblock head %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock head %} 
 {% block content %}
 <div class="container">
   <h1>House Price Prediction</h1>
-  <form id="formElm" method="post">
-    <label
-      >Select a location :
+  <form id="formElm">
+    <!-- location -->
+    <label>
+      Select a location :
       <select name="location" id="location">
         <option></option>
         {% for location in loc_data %}
@@ -15,12 +18,78 @@
         {% endfor %}
       </select>
     </label>
+    <!-- total sqft -->
+    <label>
+      Enter total sqft
+      <input type="number" id="total_sqft" name="total_sqft" />
+    </label>
+    <!-- bathroom -->
+    <label>
+      Enter No of bathrooms :
+      <select name="bathroom" id="bathroom">
+        <option></option>
+        {% for index in array %}
+        <option>{{index}}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <!-- balcony -->
+    <label>
+      Select No of balcony :
+      <select name="balcony" id="balcony">
+        <option></option>
+        {% for index in array %}
+        <option>{{index}}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <!-- bedroom -->
+    <label>
+      Select no of bedrooms :
+      <select name="bedroom" id="bedroom">
+        <option></option>
+        {% for index in array %}
+        <option>{{index}}</option>
+        {% endfor %}
+      </select>
+    </label>
     <!-- input elements -->
+    <button type="submit">Submit</button>
   </form>
-  <h3 id="result">{% if result %} Price: {{ result }} lakh Rs {% endif %}</h3>
+  <div id="output"></div>
 </div>
-
 {% endblock content %}
-{% block script %}
-<script src="{{ url_for('static', filename='index.js') }}"></script>
-{% endblock script %}
+<script>
+  const formElm = document.getElementById("formElm");
+
+  formElm.addEventListener("submit", (event) => sendData(event));
+
+  function sendData(event) {
+    event.preventDefault();
+    console.log("form submitted");
+
+    var location = document.getElementById("location").value;
+    var totalSqft = document.getElementById("total_sqft").value;
+    var bathroom = document.getElementById("bathroom").value;
+    var balcony = document.getElementById("balcony").value;
+    var bedroom = document.getElementById("bedroom").value;
+
+    $.ajax({
+      url: "/process",
+      type: "POST",
+      data: {
+        "location": location,
+        "total_sqft": totalSqft,
+        "bathroom": bathroom,
+        "balcony": balcony,
+        "bedroom": bedroom
+      },
+      success: function (response) {
+        document.getElementById("output").innerHTML = response;
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  }
+</script>
