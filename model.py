@@ -1,6 +1,6 @@
 import pickle
 import pandas as pd
-import sklearn
+# import sklearn
 
 model = pickle.load(open('Model/bengaluru_house_price_model.pickle','rb'))
 

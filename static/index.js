@@ -23,7 +23,7 @@ function sendData(event) {
       "bedroom": bedroom
     },
     success: function (response) {
-      document.getElementById("output").innerHTML = response;
+      document.getElementById("output").innerHTML = `House price is: ${response} Rs`;
     },
     error: function (error) {
       console.log(error);

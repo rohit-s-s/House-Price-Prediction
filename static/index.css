@@ -1,82 +1,39 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
 body{
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(100, 99, 99);
     font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+    margin: 0;
+    padding: 0;
 }
-
-.container {
-    text-align: center;
-    height: auto;
-    background-color: white;
+label{
+    display: block;
+    margin: 0px 0px 20px 0px;
+    font-size: 1.05rem;
+}
+.container{
+    border: none;
+    border-radius: 4px;
     padding: 20px;
-    margin: 10px;
-    border-radius: 6px;
-}
-
-h1{
-    margin: 20px;
-    font-size: 2.5rem;
-}
-
-#formElm{
-    display: flex;
-    flex-direction: column;
-   
-}
-
-input{
-    margin: 10px;
-    border: 1px solid black;
+    width: 400px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 button{
-    padding:10px 20px;
-    border-radius: 20px;
-    background-color:#28a745;
+    background-color: blueviolet;
     color: white;
-    outline: none;
+    cursor: pointer;
     border: none;
-    font-size: medium;
-    width: 30%;
-    position: relative;
-    left: 35%;
-    margin-top: 10px;
+    padding: 5px 10px;
 }
 
-button:hover{
-    background-color:black;
-    color: #28a745;
-    transition: 0.5s;
+select, input{
+    padding: 5px;
     cursor: pointer;
-}
-
-input[type="number"]{
-    padding:10px 20px;
-    border-radius: 6px;
-    color: black;
     outline: none;
 }
-input[type="radio"]{
-    cursor: pointer;
-}
 
-select{
-    padding:10px 20px;
-    border-radius: 6px;
+h1,h3{
     color: black;
-    outline: none;
-    cursor: pointer;
-    border: 1px solid black;
 }
-
-#result {
-    margin-top: 10px;
-}
-
