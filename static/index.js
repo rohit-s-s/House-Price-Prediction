@@ -11,7 +11,7 @@ array.forEach(element => {
     const textLabel = document.createElement("label")
     textLabel.textContent = "Enter total sqft : "
       const text = document.createElement("input")
-      text.setAttribute("type","number")
+      text.setAttribute("type","text")
       text.setAttribute("name",element)
       mainLabel.appendChild(text)
   }
@@ -38,7 +38,7 @@ formElm.appendChild(button)
 
 
 
-container.addEventListener("submit", function(event) {
+formElm.addEventListener("submit", (event)=>{
     event.preventDefault();
     const formData = new FormData(this);
     fetch("/", {
