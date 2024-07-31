@@ -1,10 +1,7 @@
-{% extends 'base.html'%} 
-{% block head %}
+{% extends 'base.html'%} {% block head %}
 <title>House Price Prediction</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-{% endblock head %} 
-{% block content %}
+{% endblock head %} {% block content %}
 <div class="container">
   <h1>House Price Prediction</h1>
   <form id="formElm">
@@ -58,38 +55,7 @@
   </form>
   <div id="output"></div>
 </div>
-{% endblock content %}
-<script>
-  const formElm = document.getElementById("formElm");
-
-  formElm.addEventListener("submit", (event) => sendData(event));
-
-  function sendData(event) {
-    event.preventDefault();
-    console.log("form submitted");
-
-    var location = document.getElementById("location").value;
-    var totalSqft = document.getElementById("total_sqft").value;
-    var bathroom = document.getElementById("bathroom").value;
-    var balcony = document.getElementById("balcony").value;
-    var bedroom = document.getElementById("bedroom").value;
-
-    $.ajax({
-      url: "/process",
-      type: "POST",
-      data: {
-        "location": location,
-        "total_sqft": totalSqft,
-        "bathroom": bathroom,
-        "balcony": balcony,
-        "bedroom": bedroom
-      },
-      success: function (response) {
-        document.getElementById("output").innerHTML = response;
-      },
-      error: function (error) {
-        console.log(error);
-      },
-    });
-  }
-</script>
+{% endblock content %} {% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock script %}

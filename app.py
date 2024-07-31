@@ -1,11 +1,16 @@
 from flask import Flask, render_template, request, jsonify
 from model import predict_price
+import json
 
 app = Flask(__name__)
 
 @app.route("/")
 def home_page():
-    return render_template("index.html", loc_data=["Electronic City Phase II", "Uttarahalli", "Lingadheeranahalli", "Kothanur"], array=[1, 2, 3])
+    with open("Model/locations.json","r") as file:
+        locations = json.load(file)
+        for keys,values in locations.items():
+            location = values
+    return render_template("index.html", loc_data=location, array=[1, 2, 3])
 
 @app.route('/process', methods=['POST'])
 def process():

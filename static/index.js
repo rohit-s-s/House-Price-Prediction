@@ -1,52 +1,32 @@
-// container = document.getElementById("container")
+const formElm = document.getElementById("formElm");
 
-// const formElm  = document.getElementById("formElm")
-// const array = ["total sqft", "bathrooms", "balcony", "bedrooms"]
-// const values = [1,2,3]
+formElm.addEventListener("submit", (event) => sendData(event));
 
-// array.forEach(element => {
-//   const mainLabel = document.createElement("label")
-//   mainLabel.textContent = `Enter ${element} : `
-//   if(element==="total sqft"){
-//     const textLabel = document.createElement("label")
-//     textLabel.textContent = "Enter total sqft : "
-//       const text = document.createElement("input")
-//       text.setAttribute("type","text")
-//       text.setAttribute("name",element)
-//       mainLabel.appendChild(text)
-//   }
-//   else if(element!=="total sqft"){
-//     values.forEach(value=>{
-//       const radioLabel = document.createElement("label")
-//       radioLabel.innerHTML = value
-//       const radio = document.createElement("input")
-//       radio.setAttribute("type","radio")
-//       radio.setAttribute("name",element)
-//       radio.setAttribute("value",value)
-//       radioLabel.appendChild(radio)
-//       mainLabel.appendChild(radioLabel)
-//     })
-//   }
- 
-//   formElm.appendChild(mainLabel)
-// });
+function sendData(event) {
+  event.preventDefault();
+  console.log("form submitted");
 
-// const button = document.createElement("button")
-// button.setAttribute("type","submit")
-// button.textContent = "Submit"
-// formElm.appendChild(button)
+  var location = document.getElementById("location").value;
+  var totalSqft = document.getElementById("total_sqft").value;
+  var bathroom = document.getElementById("bathroom").value;
+  var balcony = document.getElementById("balcony").value;
+  var bedroom = document.getElementById("bedroom").value;
 
-
-
-// formElm.addEventListener("submit", (event)=>{
-//     event.preventDefault();
-//     const formData = new FormData(this);
-//     fetch("/", {
-//       method: "POST",
-//       body: formData
-//     })
-//     .then(response => response.text())
-//     .then(html => {
-//       document.querySelector(".container").innerHTML = html;
-//     });
-//   });
+  $.ajax({
+    url: "/process",
+    type: "POST",
+    data: {
+      "location": location,
+      "total_sqft": totalSqft,
+      "bathroom": bathroom,
+      "balcony": balcony,
+      "bedroom": bedroom
+    },
+    success: function (response) {
+      document.getElementById("output").innerHTML = response;
+    },
+    error: function (error) {
+      console.log(error);
+    },
+  });
+}
